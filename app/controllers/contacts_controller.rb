@@ -10,12 +10,16 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
+    if params[:back]
+       render :new
+    else
     if @contact.save
-    redirect_to contacts_path, notice: "作成しました！"      
+       redirect_to contacts_path, notice: "作成しました！"      
     else
       render :new
     end
   end
+end
 
   def edit
   end
@@ -29,6 +33,11 @@ class ContactsController < ApplicationController
     end
 
   def show
+  end
+
+  def confirm
+    @contact = Contact.new(contact_params)
+    render :new if @contact.invalid?
   end
 
   def destroy

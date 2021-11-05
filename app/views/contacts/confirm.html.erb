@@ -3,6 +3,7 @@
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
   <p>タイトル:<%= @contact.title %></p>
-  <p>本文:<%= @contact.content %></p>
+  <p>内容:<%= @contact.content %></p>
   <%= form.submit  "登録する" %>
+  <%= form.submit  "戻る" , name: 'back' %>
 <% end %>
