@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  before_action :set_contact, only: [:show, :edit, :update, :destroy]
   def index
     @contacts = Contact.all
   end
@@ -16,8 +17,23 @@ class ContactsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+      if @contact.update(contact_params)
+        redirect_to contacts_path, notice: "編集しました"
+      else
+        render :edit
+      end
+    end
+
   def show
-    @contact = Contact.find(params[:id])
+  end
+
+  def destroy
+    @contact.destroy
+    redirect_to contacts_path , notice: "削除しました"
   end
   
   private
@@ -25,4 +41,7 @@ class ContactsController < ApplicationController
     params.require(:contact).permit(:title , :content)
   end
 
+  def set_contact
+    @contact = Contact.find(params[:id])
+  end
 end

@@ -1,5 +1,6 @@
 <h1>ブログ一覧</h1>
 <p><%= notice %></p>
+<table>
 <tr>
   <th>タイトル</th>
   <th>内容</th>
@@ -9,6 +10,9 @@
 <td><%= contact.title %></td>
 <td><%= contact.content %></td>
 <td><%= link_to '詳細を確認する', contact_path(contact.id)%></td>
+<td><%= link_to "編集する", edit_contact_path(contact.id) %></td>
+<td><%= link_to '削除する', contact_path(contact.id), 
+        method: :delete, data:{confirm: '本当にok?'} %></td>
 </tr>
 <% end %>
 </table>
