@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   def index
+    @contacts = Contact.all
   end
 
   def new
@@ -7,14 +8,21 @@ class ContactsController < ApplicationController
   end
 
   def create
-    Contact.create(contact_params)
-    redirect_to new_contact_path
+    @contact = Contact.new(contact_params)
+    if @contact.save
+    redirect_to contacts_path, notice: "作成しました！"      
+    else
+      render :new
+    end
+  end
+
+  def show
+    @contact = Contact.find(params[:id])
   end
   
-  praivate
+  private
   def contact_params
     params.require(:contact).permit(:title , :content)
-    redirect_to new_contac
   end
 
 end
