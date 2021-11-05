@@ -1,2 +1,19 @@
-<h1>Contacts#index</h1>
-<p>Find me in app/views/contacts/index.html.erb</p>
+<h1>ブログ一覧</h1>
+<p><%= notice %></p>
+<tr>
+  <th>タイトル</th>
+  <th>内容</th>
+</tr>
+<% @contacts.each do |contact| %>
+<tr>
+<td><%= contact.title %></td>
+<td><%= contact.content %></td>
+<td><%= link_to '詳細を確認する' , contact_path(blog.id) %></td>
+<td><%= link_to "ブログを編集する", edit_contact_path(blog.id)%></td>
+<td><%= link_to 'ブログを削除する', contact_path(blog.id), 
+        method: :delete, data: {confirm: '本当に削除してok?'} %></td>
+</tr>
+<% end %>
+</table>
+<br>
+<%= link_to '新しくブログを投稿する', new_blog_path %>

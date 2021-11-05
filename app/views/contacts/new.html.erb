@@ -1,0 +1,11 @@
+<%= form_with(model: @contact, local: true) do |form| %>
+  <div class="contact_title">
+    <%= form.label :タイトル %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="contact_content">
+    <%= form.label :内容 %>
+    <%= form.text_field :content %>
+  </div>
+  <%= form.submit :'投稿'%>
+<% end %>
